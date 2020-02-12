@@ -22,7 +22,7 @@ const BigCalendar = props => {
   const [newStart, setNewStart] = useState('')
   const [newEnd, setNewEnd] = useState('')
   const [file, setFile] = useState('');
-  const [fileData, setFileData] = useState([]);
+  // const [fileData, setFileData] = useState([]);
 
   const moveEvent = ({event, start, end, allDay}) => {
     const idx = eventData.indexOf(event)
@@ -88,20 +88,176 @@ const BigCalendar = props => {
     })
     .then(resData => {
       console.log(resData)
-      const formedEventData = resData.map(event => {
-        return {
-          title: event["Course Title"],
-          start: new Date(),
-          end: new Date(),
-          room: event["Building and Room"],
-          teacher: event.Instructor
-        }
-      })
-      setFileData(formedEventData)
+      formatEventData(resData)
     })
     .catch(err => console.log(err))
   }
-  console.log(fileData)
+
+  const formatEventData = (data) => {
+    const formattedEventData = []
+    data.forEach(item => {
+      switch(item['Meeting Pattern']) {
+        case "MW 8am-9:50am":
+          formattedEventData.push({
+            title: item["Course Title"],
+            start: new Date(2020, 1, 10, 8, 0),
+            end: new Date(2020, 1, 10, 9, 50),
+            room: item["Building and Room"],
+            teacher: item.Instructor
+          })
+          formattedEventData.push({
+            title: item["Course Title"],
+            start: new Date(2020, 1, 12, 8, 0),
+            end: new Date(2020, 1, 12, 9, 50),
+            room: item["Building and Room"],
+            teacher: item.Instructor
+          })
+          break;
+        case "TR 8am-9:50am":
+          formattedEventData.push({
+            title: item["Course Title"],
+            start: new Date(2020, 1, 11, 8, 0),
+            end: new Date(2020, 1, 11, 9, 50),
+            room: item["Building and Room"],
+            teacher: item.Instructor
+          })
+          formattedEventData.push({
+            title: item["Course Title"],
+            start: new Date(2020, 1, 13, 8, 0),
+            end: new Date(2020, 1, 13, 9, 50),
+            room: item["Building and Room"],
+            teacher: item.Instructor
+          })
+          break;
+        case "MW 12pm-1:50pm":
+          formattedEventData.push({
+            title: item["Course Title"],
+            start: new Date(2020, 1, 10, 12, 0),
+            end: new Date(2020, 1, 10, 13, 50),
+            room: item["Building and Room"],
+            teacher: item.Instructor
+          })
+          formattedEventData.push({
+            title: item["Course Title"],
+            start: new Date(2020, 1, 12, 12, 0),
+            end: new Date(2020, 1, 12, 13, 50),
+            room: item["Building and Room"],
+            teacher: item.Instructor
+          })
+          break;
+        case "MW 2pm-3:50pm":
+          formattedEventData.push({
+            title: item["Course Title"],
+            start: new Date(2020, 1, 10, 14, 0),
+            end: new Date(2020, 1, 10, 15, 50),
+            room: item["Building and Room"],
+            teacher: item.Instructor
+          })
+          formattedEventData.push({
+            title: item["Course Title"],
+            start: new Date(2020, 1, 12, 14, 0),
+            end: new Date(2020, 1, 12, 15, 50),
+            room: item["Building and Room"],
+            teacher: item.Instructor
+          })
+          break;
+        case "TR 3pm-4:50pm":
+          formattedEventData.push({
+            title: item["Course Title"],
+            start: new Date(2020, 1, 11, 15, 0),
+            end: new Date(2020, 1, 11, 16, 50),
+            room: item["Building and Room"],
+            teacher: item.Instructor
+          })
+          formattedEventData.push({
+            title: item["Course Title"],
+            start: new Date(2020, 1, 13, 15, 0),
+            end: new Date(2020, 1, 13, 16, 50),
+            room: item["Building and Room"],
+            teacher: item.Instructor
+          })
+          break;
+        case "MW 5:30pm-7:20pm":
+          formattedEventData.push({
+            title: item["Course Title"],
+            start: new Date(2020, 1, 10, 17, 30),
+            end: new Date(2020, 1, 10, 19, 20),
+            room: item["Building and Room"],
+            teacher: item.Instructor
+          })
+          formattedEventData.push({
+            title: item["Course Title"],
+            start: new Date(2020, 1, 12, 17, 30),
+            end: new Date(2020, 1, 12, 19, 20),
+            room: item["Building and Room"],
+            teacher: item.Instructor
+          })
+          break;
+        case "TR 5:30pm-7:20pm":
+          formattedEventData.push({
+            title: item["Course Title"],
+            start: new Date(2020, 1, 11, 17, 30),
+            end: new Date(2020, 1, 11, 19, 20),
+            room: item["Building and Room"],
+            teacher: item.Instructor
+          })
+          formattedEventData.push({
+            title: item["Course Title"],
+            start: new Date(2020, 1, 13, 17, 30),
+            end: new Date(2020, 1, 13, 19, 20),
+            room: item["Building and Room"],
+            teacher: item.Instructor
+          })
+          break;
+        case "MW 7:30pm-9:20pm":
+          formattedEventData.push({
+            title: item["Course Title"],
+            start: new Date(2020, 1, 10, 19, 30),
+            end: new Date(2020, 1, 10, 21, 20),
+            room: item["Building and Room"],
+            teacher: item.Instructor
+          })
+          formattedEventData.push({
+            title: item["Course Title"],
+            start: new Date(2020, 1, 12, 19, 30),
+            end: new Date(2020, 1, 12, 21, 20),
+            room: item["Building and Room"],
+            teacher: item.Instructor
+          })
+          break;
+        case "TR 7:30pm-9:20pm":
+          formattedEventData.push({
+            title: item["Course Title"],
+            start: new Date(2020, 1, 11, 19, 30),
+            end: new Date(2020, 1, 11, 21, 20),
+            room: item["Building and Room"],
+            teacher: item.Instructor
+          })
+          formattedEventData.push({
+            title: item["Course Title"],
+            start: new Date(2020, 1, 13, 19, 30),
+            end: new Date(2020, 1, 13, 21, 20),
+            room: item["Building and Room"],
+            teacher: item.Instructor
+          })
+          break;
+        case "R 5:30pm-8:50pm":
+          formattedEventData.push({
+            title: item["Course Title"],
+            start: new Date(2020, 1, 13, 17, 30),
+            end: new Date(2020, 1, 13, 20, 50),
+            room: item["Building and Room"],
+            teacher: item.Instructor
+          })
+          break;
+        default:
+          console.log('no a valid date and time');
+      }
+    })
+    setEventData(formattedEventData)
+    console.log(formattedEventData)
+  }
+
   return (
     <div className="cal-body">
       <div className="sidebar">
@@ -148,14 +304,14 @@ const BigCalendar = props => {
         selectable
         defaultDate={new Date('2020, 2, 11, 06:00')}
         defaultView='week'
-        events={fileData}
+        events={eventData}
         onEventDrop={moveEvent}
         onEventResize={resizeEvent}
         resizable
         style={{ height: '100vh', width: '100%'}}
         localizer={localizer}
-        min={new Date(2020, 2, 10, 6, 0)}
-        max={new Date(2020, 2, 20, 23, 0)}
+        min={new Date(2020, 1, 10, 6, 0)}
+        max={new Date(2020, 1, 20, 23, 0)}
         onSelectSlot={newEvent}
         step={15}
       />
